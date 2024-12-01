@@ -17,10 +17,23 @@ for i=1:length(temperatures)
 
     time = time(~isnan(time));
     nt = nt(~isnan(nt));
-
-    fit_params(i, :) = [0.9*min(nt) 0.5*(max(nt)-min(nt)) median(log(time)) 0.5*(max(nt)-min(nt)) ...
-                median(log(time)) 0.5*(max(nt)-min(nt)) median(log(time)) 0.5*(max(nt)-min(nt)) ...
-                median(log(time)) 0.5*(max(nt)-min(nt)) median(log(time))];
+    
+    % optimize please  1e3+8e3*rand(1,1)
+    log_time = log(time);
+    automatic_inits = [min(nt) ... 
+                min(nt)+(max(nt)-min(nt))*rand() min(log_time(~isinf(log_time)))+(max(log_time)-min(log_time(~isinf(log_time))))*rand() ...
+                min(nt)+(max(nt)-min(nt))*rand() min(log_time(~isinf(log_time)))+(max(log_time)-min(log_time(~isinf(log_time))))*rand() ...
+                min(nt)+(max(nt)-min(nt))*rand() min(log_time(~isinf(log_time)))+(max(log_time)-min(log_time(~isinf(log_time))))*rand() ...
+                min(nt)+(max(nt)-min(nt))*rand() min(log_time(~isinf(log_time)))+(max(log_time)-min(log_time(~isinf(log_time))))*rand() ...
+                min(nt)+(max(nt)-min(nt))*rand() min(log_time(~isinf(log_time)))+(max(log_time)-min(log_time(~isinf(log_time))))*rand()];
+    clear log_time;
+    for z=1:(1+2*5)
+        if isnan(fitting_parameter_guess(i,z))
+            fit_params(i, z) = automatic_inits(1, z);
+        else
+            fit_params(i, z) = fitting_parameter_guess(i,z);
+        end
+    end
 
 end
 

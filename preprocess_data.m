@@ -46,8 +46,11 @@ for temp_index = 1:length(temperatures)
     for ind=1:length(timeColumn)
         t(ind) = seconds(timeColumn(ind) - timeColumn(1));
         % equation 4 %
-        Nt(ind) = isc_t_table.(cell_name)(ind)/isc0 * exp((voc0 - voc_t_table.(cell_name)(ind))/(2*kb*(temp + 273.15))) - 1 ;
-       
+        if consider_isc == 1
+            Nt(ind) = isc_t_table.(cell_name)(ind)/isc0 * exp((voc0 - voc_t_table.(cell_name)(ind))/(2*kb*(temp + 273.15))) - 1 ;
+        else
+            Nt(ind) = phi0_const * n_a_const * sigma_const * v_const * exp((voc0 - voc_t_table.(cell_name)(ind))/(2*kb*(temp + 273.15))) - 1 ;
+        end
         % Nt(ind) = (isc_t_table.(cell_name)(ind)/isc0 * exp((voc0 - voc_t_table.(cell_name)(ind))/(2*kb*(temp + 273.15)))) - 1;
     end
     clear ind;

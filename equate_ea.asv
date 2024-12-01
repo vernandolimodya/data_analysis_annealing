@@ -1,9 +1,0 @@
-equated_ea = NaN([ length(temperatures) 5 ]);
-
-for i=1:length(temperatures)
-    for j=1:no_of_defects(i)
-        equated_ea(i,j) = fillmissing(ea_array, 'constant', 0).*fillmissing(ea_array, 'constant', 0);
-    end
-end
-
-clear equated_ea;
