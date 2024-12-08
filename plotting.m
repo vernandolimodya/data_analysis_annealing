@@ -61,7 +61,7 @@ for i = 1:length(temperatures)
     text(16 - 0.2*(16-(-2)), max(data.Nt) - 0.05 * (max(data.Nt) - min(data.Nt)), ...
         append("T = ", string(temperatures(i)), " ", char(176) , "C" ), 'fontweight','bold');
 
-    xlabel('log(t[s])');
+    xlabel('ln(t[s])');
     ylim([min(data.Nt) - 0.2 * (max(data.Nt) - min(data.Nt)) max(data.Nt) + 0.2 * (max(data.Nt) - min(data.Nt))]);
     xlim([time_lower_limit time_upper_limit]);
     ylabel('Rel. Defect Conc.');
