@@ -7,4 +7,4 @@ https://ieeexplore.ieee.org/document/6656726
 
 Users can just run `main.m` in MATLAB and settings such as input directory, number of fitting iterations, etc. can be found and set in `config.m`.
 
-![Alt text](sample_graph.jpg "Optional title")
+![Alt text](images/example_result.PNG "Optional title")
