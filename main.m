@@ -6,7 +6,7 @@ end
 
 config;
 
-preprocess_data;
+% preprocess_data;
 % import the folder containing the input data from the analysis to the
 % path (i.e. input_data_folder, see config)
 addpath(append( fileparts(mfilename('fullpath')), '/./'));
@@ -30,7 +30,4 @@ end
 find_equal_ea_for_plotting;
 plotting;
 
-clean_tmp_files;
-
-% step2_new_with_log;
-% step3_new;
+% clean_tmp_files;

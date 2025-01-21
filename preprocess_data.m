@@ -1,9 +1,3 @@
-%%% DELETE THIS AFTERWARDS %%% 
-
-%%% config;
-
-%%%%%%%%%%%%%%%%%%%%%%%
-
 for temp_index = 1:length(temperatures)
     temp = temperatures(temp_index);
 
@@ -54,18 +48,22 @@ for temp_index = 1:length(temperatures)
         % Nt(ind) = (isc_t_table.(cell_name)(ind)/isc0 * exp((voc0 - voc_t_table.(cell_name)(ind))/(2*kb*(temp + 273.15)))) - 1;
     end
     clear ind;
-    
-    temp_table = table(bigT, t, Nt);
-    temp_table.Properties.VariableNames = {'T', 'time (s)', 'Nt'};
 
-    %%% moving average implementation
+    % Normalize Nt
+    Nt_max = max(Nt); % Get the maximum value of Nt
+    Nt_norm = Nt / Nt_max; % Normalize Nt
+    
+    temp_table = table(bigT, t, Nt_norm);
+    temp_table.Properties.VariableNames = {'T', 'time (s)', 'Nt'};
+    
+    % Moving average implementation
     temp_table.('Nt_err') = movstd(temp_table.Nt, moving_average_time_span(temp_index));
     if moving_average_time_span(temp_index) ~= 0
         temp_table.Nt = movmean(temp_table.Nt, moving_average_time_span(temp_index));
     end
-    %%% 
     
-    writetable(temp_table, append(input_data_folder, '/', string(temp), '.xlsx'))
+    % Write table to file
+    writetable(temp_table, append(input_data_folder, '/', string(temp), '.xlsx'));
 
 end
 

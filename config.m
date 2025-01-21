@@ -4,7 +4,7 @@ kb = 8.617333262145e-5; % eV/K
 
 input_data_folder = "input_data";
 input_data_file = "all_annealing_data_cleaned.xlsx";
-temperatures = [120 140 150]; % in celsius
+temperatures = [50 100 150 230]; % in celsius
 cell_name = "cell02"; % it has to be the same name as in the column of the
 % raw data
 
@@ -20,29 +20,30 @@ v_const = 1;
 
 set_no_of_activation_energies = 1; % 0 : automatic number of activation energies, 1 : number of activation energies
 % set below in the variable no_of_activation_energies
-no_of_activation_energies = [1 2 1];
+no_of_activation_energies = [2 2 1 3];
 
-moving_average_time_span = [10 30 10]; % in data points
+moving_average_time_span = [1 1 1 1]; % in data points
 % length has to be the same number as temperatures array
 % all entries > 1
 
 fitting_parameter_guess = [[NaN NaN NaN NaN NaN NaN NaN NaN NaN NaN NaN]
                            [NaN NaN NaN NaN NaN NaN NaN NaN NaN NaN NaN]
+                           [0 NaN 15 NaN NaN NaN NaN NaN NaN NaN NaN]
                            [NaN NaN NaN NaN NaN NaN NaN NaN NaN NaN NaN]];
 
 
-plot_every_n_th_datapoint = [1 1 1 1 1];
+plot_every_n_th_datapoint = [1 1 1 1];
 % length has to be the same number as temperatures array
 
 show_errorbars = 0; % 0 no errorbars, 1 with errorbars
 
-maximum_data_length = 2920; % number of data points
+maximum_data_length = 1450; % number of data points considered for fitting
 
 tauzero_initial_guess = log(7.71e-6); % in log( 1 * seconds)
 
 % number of iterations
 % e.g. 100
-number_of_iterations = 50;
+number_of_iterations = 10;
 
 % the fraction of total iterations where tau refining is performed, e.g.
 % for a value of 0.2, means the last 20 percent of iterations include tau 
@@ -60,8 +61,8 @@ ea_tolerance_taurefine = 0.01;
 ea_tolerance_samecolor = 0.05;
 
 % plot from 1e{time_lower_limit} seconds to 1e{time_upper_limit} seconds
-time_lower_limit = 9;
-time_upper_limit = 14;
+time_lower_limit = 1;
+time_upper_limit = 16;
 
 % color scheme in hexadecimal for plotting %
 color_scheme = ["red", "green", "blue", "yellow",  ...
