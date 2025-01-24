@@ -62,8 +62,10 @@ for i = 1:length(temperatures)
         append("T = ", string(temperatures(i)), " ", char(176) , "C" ), 'fontweight','bold');
 
     xlabel('ln(t[s])');
-    y_min = min([min(nt), min(y_fit)]);
-    y_max = max([max(nt), max(y_fit)]);
+    % y_min = min([min(nt), min(y_fit)]);
+    y_min = min(nt);
+    % y_max = max([max(nt), max(y_fit)]);
+    y_max = max(nt);
     margin = 0.1 * (y_max - y_min); % Add 10% margin
     ylim([y_min - margin, y_max + margin]);
     ylabel('Norm. Rel. Defect Conc.');

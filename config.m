@@ -4,7 +4,7 @@ kb = 8.617333262145e-5; % eV/K
 
 input_data_folder = "input_data";
 input_data_file = "all_annealing_data_cleaned.xlsx";
-temperatures = [50 100 150 230]; % in celsius
+temperatures = [120 140 150]; % in celsius
 cell_name = "cell02"; % it has to be the same name as in the column of the
 % raw data
 
@@ -20,19 +20,18 @@ v_const = 1;
 
 set_no_of_activation_energies = 1; % 0 : automatic number of activation energies, 1 : number of activation energies
 % set below in the variable no_of_activation_energies
-no_of_activation_energies = [2 2 1 3];
+no_of_activation_energies = [1 1 1];
 
-moving_average_time_span = [1 1 1 1]; % in data points
+moving_average_time_span = [50 50 50]; % in data points
 % length has to be the same number as temperatures array
 % all entries > 1
 
 fitting_parameter_guess = [[NaN NaN NaN NaN NaN NaN NaN NaN NaN NaN NaN]
-                           [NaN NaN NaN NaN NaN NaN NaN NaN NaN NaN NaN]
-                           [0 NaN 15 NaN NaN NaN NaN NaN NaN NaN NaN]
-                           [NaN NaN NaN NaN NaN NaN NaN NaN NaN NaN NaN]];
+                           [0.48 0.05 10.9 0.14 13.5 NaN NaN NaN NaN NaN NaN]
+                           [0.45 0.13 12.3 NaN NaN NaN NaN NaN NaN NaN NaN]];
 
 
-plot_every_n_th_datapoint = [1 1 1 1];
+plot_every_n_th_datapoint = [50 50 50];
 % length has to be the same number as temperatures array
 
 show_errorbars = 0; % 0 no errorbars, 1 with errorbars
